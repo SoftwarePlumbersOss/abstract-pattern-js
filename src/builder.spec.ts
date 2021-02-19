@@ -17,8 +17,7 @@ describe('test parsers', ()=>{
         let pattern = Pattern.of("abc123");
         expect(pattern.build(Builders.toUnixWildcard())).toBe("abc123");
     });
-    
-    
+       
     it('testCharSequenceAsSimplePattern', ()=> {
         let pattern = Pattern.of("abc123");
         expect(pattern.build(Builders.toSimplePattern())).toBe("abc123");
@@ -28,7 +27,6 @@ describe('test parsers', ()=>{
         let pattern = Pattern.of("abc?123");
         expect(pattern.build(Builders.toUnixWildcard())).toBe("abc\\?123");
     });
-    
     
     it('testCharSequenceWithSpecialCharsAsSimplePattern', ()=> {
         let pattern = Pattern.of("abc?123");
@@ -44,20 +42,17 @@ describe('test parsers', ()=>{
         let pattern = Pattern.of("ab+123");
         expect(pattern.build(Builders.toUnixWildcard('+'))).toBe("ab++123");
     });
-    
-    
+     
     it('testCharSequenceAsUnixWildcardWithEscapesAndExtraOperators', ()=> {
         let pattern = Pattern.of("ab+123");
         expect(pattern.build(Builders.toUnixWildcard('+', [ '2' ]))).toBe("ab++1+23");
     });     
     
-    
     it('testAnyCharAsUnixWildcard', ()=> {
         let pattern = ANY_CHAR;
         expect(pattern.build(Builders.toUnixWildcard())).toBe("?");
     });
-    
-    
+     
     it('testOneOfAsUnixWildcard', ()=> {
         let pattern = Pattern.oneOf("abc234");
         expect(pattern.build(Builders.toUnixWildcard())).toBe("[abc234]");
@@ -133,8 +128,7 @@ describe('test parsers', ()=>{
         pattern = Pattern.oneOf("abc123").atLeast(1);
         expect(pattern.build(Builders.toSQL92('\\'))).toBe("_%");
     });
-    
-    
+     
     it('testGroupAsSQL92', ()=> {
         let pattern = Pattern.of([Pattern.of("abc"), ANY_CHAR.atLeast(1)]);
         expect(pattern.build(Builders.toSQL92('\\'))).toBe("abc_%");

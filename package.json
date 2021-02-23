@@ -1,5 +1,5 @@
 {
-  "name": "abstract-pattern",
+  "name": "@softwareplumber/abstract-pattern",
   "version": "0.0.0",
   "description": "Utility for parsing and reformatting string templates",
   "main": "dist/index.js",

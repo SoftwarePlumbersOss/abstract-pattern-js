@@ -1,4 +1,5 @@
-import { Tokenizer, Tokens, TokenType } from 'abstract-tokenizer';
+import { Tokenizer, Tokens, TokenType } from '@softwareplumber/abstract-tokenizer';
+import { IImmutableSet, ImmutableSet } from '@softwareplumber/immutable-set';
 import { Pattern, ANY_CHAR } from './pattern';
 import { UNIX_WILDCARD_OPERATORS , SQL92_WILDCARD_OPERATORS, UNIX_WILDCARD_ESCAPE } from './constants';
 
@@ -87,8 +88,8 @@ function parseSQL92Expression(tokenizer : Tokenizer) {
 
 export class Parsers {
 
-    static parseUnixWildcard(pattern : string | Tokenizer, escape : string = UNIX_WILDCARD_ESCAPE, operators: string[] | Set<string> = UNIX_WILDCARD_OPERATORS) {
-        let operatorSet = Array.isArray(operators) ? new Set(operators) : operators;
+    static parseUnixWildcard(pattern : string | Tokenizer, escape : string = UNIX_WILDCARD_ESCAPE, operators: string[] | IImmutableSet<string> = UNIX_WILDCARD_OPERATORS) {
+        let operatorSet = Array.isArray(operators) ? new ImmutableSet(operators) : operators;
         let tokenizer = typeof pattern === 'string' ? Tokens.fromString(pattern, escape, operatorSet)[Symbol.iterator]() as Tokenizer : pattern;
         return parseUnixWildcardExpression(tokenizer);
     }

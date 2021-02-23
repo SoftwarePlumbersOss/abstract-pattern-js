@@ -1,7 +1,7 @@
 import { Parsers } from "./parser";
 import { Builders } from "./builder";
 import { UNIX_WILDCARD_OPERATORS } from './constants';
-import { Tokenizer } from "abstract-tokenizer";
+import { Tokenizer } from "@softwareplumber/abstract-tokenizer";
 
 describe('test parsers', ()=>{
     it('parses simple pattern', ()=>{

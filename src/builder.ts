@@ -1,5 +1,5 @@
 import PatternType from './patterntype';
-import { Tokens, TokenType } from 'abstract-tokenizer';
+import { Tokens, TokenType } from '@softwareplumber/abstract-tokenizer';
 
 import { 
     REGEX_OPERATORS, 

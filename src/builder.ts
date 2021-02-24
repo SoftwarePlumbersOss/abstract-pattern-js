@@ -36,7 +36,7 @@ function escape(chars : string, escape: string, specialChars : Set<string>) {
 class RegularExpressionBuilder implements Builder<String> {
 
     private buffer : string[];
-    private scopes:  (Map<String,any>|undefined)[];
+    private scopes:  (Map<string,any>|undefined)[];
 
     constructor() {
         this.buffer = ['^'];
@@ -118,10 +118,10 @@ class RegExpBuilder implements Builder<RegExp> {
     }
 }
 
-class UnixWildcardBuilder implements Builder<String> { 
+class UnixWildcardBuilder implements Builder<string> { 
 
     private tokens : string[];
-    private scopes: [ start: number, attrs: Map<String,any> | undefined ][];
+    private scopes: [ start: number, attrs: Map<string,any> | undefined ][];
     private specialChars: Set<string>;
     private escapeChar: string;
 
@@ -196,10 +196,10 @@ class UnixWildcardBuilder implements Builder<String> {
     }
 }
 
-class SQL92Builder implements Builder<String> { 
+class SQL92Builder implements Builder<string> { 
 
     private tokens : string[];
-    private scopes: [ start: number, attrs: Map<String,any> | undefined ][];
+    private scopes: [ start: number, attrs: Map<string,any> | undefined ][];
     private specialChars: Set<string>;
     private escapeChar: string;
 
@@ -267,7 +267,7 @@ class SQL92Builder implements Builder<String> {
     }
 }
 
-class SimplePatternBuilder implements Builder<String> {
+class SimplePatternBuilder implements Builder<string> {
 
     private buffer : string[];
     private specialChars: Set<string>;
@@ -316,7 +316,7 @@ class SimplePatternBuilder implements Builder<String> {
 
 
 export class Builders {
-    static toRegularExpression() : Builder<String> {
+    static toRegularExpression() : Builder<string> {
         return new RegularExpressionBuilder();
     }
 
@@ -324,15 +324,15 @@ export class Builders {
         return new RegExpBuilder();
     }
 
-    static toUnixWildcard(escape? : string, specialChars? : Iterable<string>) : Builder<String> {
+    static toUnixWildcard(escape? : string, specialChars? : Iterable<string>) : Builder<string> {
         return new UnixWildcardBuilder(escape, specialChars);
     }
 
-    static toSimplePattern(escape? : string, specialChars? : Iterable<string>) : Builder<String> {
+    static toSimplePattern(escape? : string, specialChars? : Iterable<string>) : Builder<string> {
         return new SimplePatternBuilder(escape, specialChars);
     }
 
-    static toSQL92(escape? : string, specialChars? : Iterable<string>) : Builder<String> {
+    static toSQL92(escape? : string, specialChars? : Iterable<string>) : Builder<string> {
         return new SQL92Builder(escape, specialChars);
     }
 }

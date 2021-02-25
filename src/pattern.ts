@@ -1,6 +1,7 @@
 import PatternType from './patterntype';
 import { Builder, Builders } from './builder';
 
+type Predicate<T> = (target : T) => boolean;
 
 export abstract class Pattern implements Iterable<Pattern> {
     /** match this pattern against some string */
@@ -31,6 +32,10 @@ export abstract class Pattern implements Iterable<Pattern> {
 
     match(target : string) : boolean {
         return this.build(Builders.toRegExp()).test(target);
+    }
+
+    asPredicate() : Predicate<string> {
+        return target => this.match(target);
     }
 
     /** build part of something from this pattern */

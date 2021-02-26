@@ -1,9 +1,10 @@
 import PatternType from './patterntype';
 import { Builder, Builders } from './builder';
+import { IPredicate } from '@softwareplumber/abstract-function'
 
 type Predicate<T> = (target : T) => boolean;
 
-export abstract class Pattern implements Iterable<Pattern> {
+export abstract class Pattern implements Iterable<Pattern>, IPredicate<string> {
     /** match this pattern against some string */
     //abstract match(matchable: string) : boolean; 
     abstract get type() : PatternType;
@@ -30,12 +31,8 @@ export abstract class Pattern implements Iterable<Pattern> {
         return true;        
     }
 
-    match(target : string) : boolean {
+    test(target : string) : boolean {
         return this.build(Builders.toRegExp()).test(target);
-    }
-
-    asPredicate() : Predicate<string> {
-        return target => this.match(target);
     }
 
     /** build part of something from this pattern */

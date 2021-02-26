@@ -5,12 +5,12 @@ import { Pattern, ANY_CHAR } from './pattern';
 describe('test parsers', ()=>{
     it('parses simple pattern', ()=>{
         let pattern = Parsers.parseUnixWildcard("abc");
-        expect(pattern.match("abc")).toBe(true);
-        expect(pattern.match("abcx")).toBe(false);
-        expect(pattern.match("xabc")).toBe(false);
-        expect(pattern.match("ab")).toBe(false);
-        expect(pattern.match("bc")).toBe(false);
-        expect(pattern.match("")).toBe(false);    
+        expect(pattern.test("abc")).toBe(true);
+        expect(pattern.test("abcx")).toBe(false);
+        expect(pattern.test("xabc")).toBe(false);
+        expect(pattern.test("ab")).toBe(false);
+        expect(pattern.test("bc")).toBe(false);
+        expect(pattern.test("")).toBe(false);    
     });
 
     it('testCharSequenceAsUnixWildcard', ()=> {

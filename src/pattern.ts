@@ -1,6 +1,8 @@
 import PatternType from './patterntype';
 import { Builder, Builders } from './builder';
 import { IPredicate } from '@softwareplumber/abstract-function'
+import { UNIX_WILDCARD_ESCAPE, UNIX_WILDCARD_OPERATORS } from './constants';
+import ImmutableSet from '@softwareplumber/immutable-set';
 
 type Predicate<T> = (target : T) => boolean;
 
@@ -48,6 +50,10 @@ export abstract class Pattern implements Iterable<Pattern>, IPredicate<string> {
     build<U>(builder : Builder<U>) : U {
         this.buildFragment(builder);
         return builder.build();
+    }
+
+    toString(escape = UNIX_WILDCARD_ESCAPE, operators = UNIX_WILDCARD_OPERATORS) : string {
+        return this.build(Builders.toUnixWildcard(escape, operators));
     }
 
     /** create a pattern from a string or an array of patterns */

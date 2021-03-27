@@ -15,6 +15,13 @@ describe('tests basic Pattern operations', () => {
         expect(Pattern.of("xy").then(ANY_CHAR).equals(Pattern.of("xy").then(ANY_CHAR))).toBe(true);
     });
 
+    it('has default string representation', () => {
+        expect(Pattern.of("abc123").toString()).toEqual("abc123");
+        expect(ANY_CHAR.toString()).toEqual("?");
+        expect(ANY_CHAR.atLeast(2).toString()).toEqual("??*");
+        expect(Pattern.of("xy").then(ANY_CHAR).toString()).toEqual("xy?");
+    });
+
     it('char sequence has lower bound', () => {
         let pattern = Pattern.of("abc123");
         expect(pattern.lowerBound()).toEqual("abc123");

@@ -1,5 +1,6 @@
 import { Parsers } from "./parser";
 import { Builders } from "./builder";
+import { ANY_STRING, ANY_CHAR } from './pattern';
 import { UNIX_WILDCARD_OPERATORS } from './constants';
 import { Tokenizer } from "@softwareplumber/abstract-tokenizer";
 
@@ -22,6 +23,11 @@ describe('test parsers', ()=>{
         expect(pattern.test("axc")).toBe(true);
         expect(pattern.test("axyc")).toBe(false);
     });
+
+    it('testParseUnixWildcardSinglePlaceholderEquivalentToANY_CHAR', ()=>{
+        let pattern = Parsers.parseUnixWildcard("?");
+        expect(pattern).toEqual(ANY_CHAR);
+    });       
 
     it('testParseUnixWildcardWithEscapedPlaceholder', ()=>{
         let pattern = Parsers.parseUnixWildcard("a\\?c");
@@ -51,6 +57,11 @@ describe('test parsers', ()=>{
         expect(pattern.test("axc")).toBe(true);
         expect(pattern.test("axyc")).toBe(true);
     });  
+
+    it('testParseUnixWildcardMultiplePlaceholderEquivalentToANY_STRING', ()=>{
+        let pattern = Parsers.parseUnixWildcard("*");
+        expect(pattern).toEqual(ANY_STRING);
+    });      
 
     it('testParseUnixWildcardWithCharListPlaceholder', ()=>{
         let pattern = Parsers.parseUnixWildcard("a[bc]d");

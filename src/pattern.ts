@@ -195,3 +195,4 @@ class EmptyPattern extends Pattern {
 
 export const ANY_CHAR : Pattern = new AnyCharPattern();
 export const EMPTY: Pattern = new EmptyPattern();
+export const ANY_STRING : Pattern = ANY_CHAR.atLeast(0);

@@ -1,5 +1,5 @@
 import PatternType from './patterntype';
-import { Pattern, ANY_CHAR, EMPTY } from './pattern';
+import { Pattern, ANY_CHAR, ANY_STRING, EMPTY } from './pattern';
 import { Parsers } from './parser';
 import { Builders, Builder } from './builder';
 import Constants from './constants';

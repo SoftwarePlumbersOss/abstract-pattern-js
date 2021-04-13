@@ -58,7 +58,7 @@ function parseUnixWildcardExpression(tokenizer : Tokenizer) : Pattern {
                 break;
         }
     }
-    return Pattern.of(patterns);
+    return patterns.length === 1 ? patterns[0] : Pattern.of(patterns);
 }
 
 function parseSQL92Expression(tokenizer : Tokenizer) {
@@ -83,7 +83,7 @@ function parseSQL92Expression(tokenizer : Tokenizer) {
         }
         tokenizer.next();
     }
-    return Pattern.of(patterns);
+    return patterns.length === 1 ? patterns[0] : Pattern.of(patterns);
 }
 
 export class Parsers {
